@@ -61,7 +61,8 @@ class StartVC: UIViewController {
         // You can also go to https://developer.apple.com/documentation/uikit/uibutton#topics
         // where you will find all the available APIs.
         
-        // MARK: >> Your Code Here <<
+		button.backgroundColor = #colorLiteral(red: 0.9529411793, green: 0.6862745285, blue: 0.1333333403, alpha: 1)
+		button.layer.cornerRadius = 10
         
         button.translatesAutoresizingMaskIntoConstraints = false
         
@@ -126,7 +127,9 @@ class StartVC: UIViewController {
         
         // A view must be in the hierarchy before constraints are added.
         NSLayoutConstraint.activate([
-            // MARK: >> Your Code Here <<
+			startButton.topAnchor.constraint(equalTo: welcomeLabel.bottomAnchor, constant: 100),
+			startButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 150),
+			startButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -150)
         ])
         
         // MARK: STEP 3: Adding Callbacks
@@ -143,6 +146,7 @@ class StartVC: UIViewController {
     @objc func didTapStart(_ sender: UIButton) {
         // Initialize an instance of MainVC
         let vc = MainVC()
+		vc.modalPresentationStyle = .fullScreen
         // Use the present function to modally present the MainVC
         present(vc, animated: true, completion: nil)
     }
