@@ -147,21 +147,11 @@ class StatsVC: UIViewController {
 			streakLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
 			streakLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 100),
 			streakLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -100),
-			
-//			pauseButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
-//			pauseButton.leadingAnchor.constraint(equalTo: scoreLabel.trailingAnchor, constant: 20),
-//			pauseButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-//
+
 			backButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
 			backButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
 			backButton.trailingAnchor.constraint(equalTo: streakLabel.leadingAnchor, constant: -20),
-//
-//
-//			imageView.topAnchor.constraint(equalTo: scoreLabel.bottomAnchor, constant: 20),
-//			imageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50),
-//			imageView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50),
-//			imageView.bottomAnchor.constraint(equalTo: self.view.centerYAnchor, constant: 0),
-//
+
 			labelStackView.topAnchor.constraint(equalTo: streakLabel.bottomAnchor, constant: 50),
 			labelStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 50),
 			labelStackView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -50),

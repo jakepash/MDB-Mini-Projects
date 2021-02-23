@@ -212,6 +212,8 @@ class MainVC: UIViewController {
         // Restart the timer when view reappear.
         
         // MARK: >> Your Code Here <<
+		paused = true
+		pause()
     }
     
     func getNextQuestion() {
