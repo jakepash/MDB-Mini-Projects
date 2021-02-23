@@ -26,9 +26,13 @@ class MainVC: UIViewController {
         let view = UIImageView()
         
         // MARK: >> Your Code Here <<
+<<<<<<< HEAD
 		view.contentMode = .scaleAspectFill
 		view.clipsToBounds = true
 		view.layer.cornerRadius = 10
+=======
+    
+>>>>>>> 7adce702e2b3a9c5809503e234c4c1b3da074c84
         view.translatesAutoresizingMaskIntoConstraints = false
 		view.backgroundColor = .blue
 //		view.frame.size = CGSize(width: 200, height: 300)
@@ -321,6 +325,8 @@ class MainVC: UIViewController {
         
         vc.longestStreak = longestStreak
 		vc.lastThreeQuestions = lastThreeQuestions
+        
+        vc.modalPresentationStyle = .fullScreen
         
         // MARK: STEP 13: StatsVC Data
         // Follow instructions in StatsVC. You also need to invalidate
