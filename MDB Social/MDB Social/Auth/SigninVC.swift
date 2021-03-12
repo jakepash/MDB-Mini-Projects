@@ -187,7 +187,7 @@ class SigninVC: UIViewController {
     }
     
     @objc private func didTapSignUp(_ sender: UIButton) {
-        
+		self.performSegue(withIdentifier: "toSignup", sender: self)
     }
     
     private func showErrorBanner(withTitle title: String, subtitle: String? = nil) {

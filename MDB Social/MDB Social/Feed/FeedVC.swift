@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class FeedVC: UIViewController {
     
@@ -20,12 +21,52 @@ class FeedVC: UIViewController {
         
         return btn
     }()
+	
+	private let eventCollectionView: UICollectionView = {
+		let layout = UICollectionViewFlowLayout()
+		layout.minimumLineSpacing = 30
+		layout.minimumInteritemSpacing = 30
+		let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+		collectionView.register(FeedCollectionViewCell.self, forCellWithReuseIdentifier: FeedCollectionViewCell.reuseIdentifier)
+		collectionView.translatesAutoresizingMaskIntoConstraints = false
+		return collectionView
+	}()
+	
+	var events: [Event] = []
     
     override func viewDidLoad() {
-        view.addSubview(signOutButton)
-        
-        signOutButton.center = view.center
-        signOutButton.addTarget(self, action: #selector(didTapSignOut(_:)), for: .touchUpInside)
+		view.addSubview(eventCollectionView)
+		eventCollectionView.dataSource = self
+		eventCollectionView.delegate = self
+		
+		NSLayoutConstraint.activate([
+			eventCollectionView.topAnchor.constraint(equalTo: view.topAnchor),
+			eventCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+			eventCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+			eventCollectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+		])
+		
+		
+//        view.addSubview(signOutButton)
+//
+//        signOutButton.center = view.center
+		navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Sign out", style: .plain, target: self, action: #selector(didTapSignOut(_:)))
+//        signOutButton.addTarget(self, action: #selector(didTapSignOut(_:)), for: .touchUpInside)
+		
+		
+		FIRDatabaseRequest().getEvents { (documents) in
+			for document in documents {
+				guard let event = try? document.data(as: Event.self) else {
+					print("FAILURE")
+					return
+				}
+				self.events.append(event)
+				self.eventCollectionView.reloadData()
+				
+			}
+		}
+		
+		
     }
     
     @objc func didTapSignOut(_ sender: UIButton) {
@@ -39,4 +80,34 @@ class FeedVC: UIViewController {
             UIView.transition(with: window, duration: duration, options: options, animations: {}, completion: nil)
         }
     }
+}
+
+extension FeedVC: UICollectionViewDataSource {
+	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+		return events.count
+	}
+	
+	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+		let event = events[indexPath.item]
+		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FeedCollectionViewCell.reuseIdentifier, for: indexPath) as! FeedCollectionViewCell
+		
+		FIRDatabaseRequest().getImage(event.photoURL, completion: { (image) in
+			cell.imageView.image = image
+			cell.isLoading(isloading: false)
+		})
+		cell.titleLabel.text = event.name
+		FIRDatabaseRequest().getUsername(event.creator, completion: { (fullname) in
+			cell.authorLabel.text = "by \(fullname)"
+		})
+		cell.rsvpLabel.text = "\(event.rsvpUsers.count) already RSVPed"
+		
+		return cell
+	}
+}
+
+extension FeedVC: UICollectionViewDelegateFlowLayout {
+	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+		return CGSize(width: 300, height: 200)
+	}
+
 }

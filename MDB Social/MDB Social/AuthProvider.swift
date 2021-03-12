@@ -23,7 +23,11 @@ class FIRAuthProvider {
         case errorFetchingUserDoc
         case errorDecodingUserDoc
         case unspecified
+		
+		case emailInUse
+		case weakPassword
     }
+	
     
     let db = Firestore.firestore()
     
@@ -37,7 +41,7 @@ class FIRAuthProvider {
         linkUser(withuid: user.uid, completion: nil)
     }
     
-    func signIn(withEmail email: String, password: String,
+	func signIn(withEmail email: String, password: String,
                 completion: ((Result<User, SignInErrors>)->Void)?) {
         
         auth.signIn(withEmail: email, password: password) { [weak self] authResult, error in
@@ -68,6 +72,33 @@ class FIRAuthProvider {
     }
     
     /* TODO: Firebase sign up handler, add user to firestore */
+	func signUp(withEmail email: String, password: String, fullname: String, username: String,
+				completion: ((Result<User, SignInErrors>)->Void)?) {
+		auth.createUser(withEmail: email, password: password) { [weak self] authResult, error in
+			if let error = error {
+				let nsError = error as NSError
+				let errorCode = FirebaseAuth.AuthErrorCode(rawValue: nsError.code)
+				
+				switch errorCode {
+				case .emailAlreadyInUse:
+					completion?(.failure(.emailInUse))
+				case .weakPassword:
+					completion?(.failure(.weakPassword))
+				default:
+					completion?(.failure(.unspecified))
+				}
+				return
+			}
+			
+			guard let authResult = authResult else {
+				completion?(.failure(.internalError))
+				return
+			}
+			
+			
+			self?.addUser(withuid: authResult.user.uid, email: email, fullname: fullname, username: username, completion: completion)
+		}
+	}
     
     func isSignedIn() -> Bool {
         return auth.currentUser != nil
@@ -98,6 +129,22 @@ class FIRAuthProvider {
             completion?(.success(user))
         }
     }
+	
+	private func addUser(withuid uid: String, email: String, fullname: String, username: String,
+						  completion: ((Result<User, SignInErrors>)->Void)?) {
+		currentUser = User(uid: uid, username: username, email: email, fullname: fullname, savedEvents: [])
+		
+		if let user = currentUser {
+			FIRDatabaseRequest().setUser(user, completion: {
+				completion?(.success(user))
+				
+			})
+		}
+		
+	}
+
+	
+	
     
     private func unlinkCurrentUser() {
         userListener?.remove()

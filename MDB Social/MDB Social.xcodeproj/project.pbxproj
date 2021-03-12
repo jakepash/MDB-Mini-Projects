@@ -28,6 +28,9 @@
 		1AF3867E25E877B40006AE59 /* LoadingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AF3867D25E877B40006AE59 /* LoadingButton.swift */; };
 		1AF3868125E88AA20006AE59 /* FIRDatabaseRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AF3868025E88AA20006AE59 /* FIRDatabaseRequest.swift */; };
 		88D1856E3E3B7E97C54E6FB3 /* Pods_MDB_Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E51BF3FE48C081C2540BE42E /* Pods_MDB_Social.framework */; };
+		9873434C25F4279700D10923 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9873434B25F4279700D10923 /* GoogleService-Info.plist */; };
+		9873435025F42A2200D10923 /* SignupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9873434F25F42A2200D10923 /* SignupVC.swift */; };
+		9873435325F45BAE00D10923 /* FeedCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9873435225F45BAE00D10923 /* FeedCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +57,9 @@
 		1AF3867D25E877B40006AE59 /* LoadingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingButton.swift; sourceTree = "<group>"; };
 		1AF3868025E88AA20006AE59 /* FIRDatabaseRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FIRDatabaseRequest.swift; sourceTree = "<group>"; };
 		97EDB17FB89D773DE44696EF /* Pods-MDB Social.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MDB Social.debug.xcconfig"; path = "Target Support Files/Pods-MDB Social/Pods-MDB Social.debug.xcconfig"; sourceTree = "<group>"; };
+		9873434B25F4279700D10923 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		9873434F25F42A2200D10923 /* SignupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupVC.swift; sourceTree = "<group>"; };
+		9873435225F45BAE00D10923 /* FeedCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCollectionViewCell.swift; sourceTree = "<group>"; };
 		BC2F19D1A2D8BB347835EFD1 /* Pods-MDB Social.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MDB Social.release.xcconfig"; path = "Target Support Files/Pods-MDB Social/Pods-MDB Social.release.xcconfig"; sourceTree = "<group>"; };
 		E51BF3FE48C081C2540BE42E /* Pods_MDB_Social.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MDB_Social.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -91,6 +97,7 @@
 		1AF385F025E812170006AE59 /* MDB Social */ = {
 			isa = PBXGroup;
 			children = (
+				9873434B25F4279700D10923 /* GoogleService-Info.plist */,
 				1AF3865425E83D900006AE59 /* Extensions */,
 				1AF3864C25E838F80006AE59 /* Feed */,
 				1AF3864B25E838EF0006AE59 /* Auth */,
@@ -141,6 +148,7 @@
 				1AF3865B25E8403E0006AE59 /* AuthTextField.swift */,
 				1AF3867D25E877B40006AE59 /* LoadingButton.swift */,
 				1AF03DC325EDC18500E3FF80 /* HorizontalActionLabel.swift */,
+				9873434F25F42A2200D10923 /* SignupVC.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -149,6 +157,7 @@
 			isa = PBXGroup;
 			children = (
 				1AF3864D25E83B850006AE59 /* FeedVC.swift */,
+				9873435225F45BAE00D10923 /* FeedCollectionViewCell.swift */,
 				1AF3865125E83C1A0006AE59 /* FeedNavigationVC.swift */,
 			);
 			path = Feed;
@@ -241,6 +250,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1AF385FE25E8121A0006AE59 /* LaunchScreen.storyboard in Resources */,
+				9873434C25F4279700D10923 /* GoogleService-Info.plist in Resources */,
 				1AF3864825E8378D0006AE59 /* Main.storyboard in Resources */,
 				1AF3860725E814990006AE59 /* GoogleService-Info.plist in Resources */,
 				1AF385FB25E8121A0006AE59 /* Assets.xcassets in Resources */,
@@ -298,6 +308,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1AF03DC425EDC18500E3FF80 /* HorizontalActionLabel.swift in Sources */,
+				9873435325F45BAE00D10923 /* FeedCollectionViewCell.swift in Sources */,
 				1AF3867E25E877B40006AE59 /* LoadingButton.swift in Sources */,
 				1AF3865625E83E4E0006AE59 /* UIViewController+HideKeyboard.swift in Sources */,
 				1AF3862525E816540006AE59 /* User.swift in Sources */,
@@ -305,6 +316,7 @@
 				1AF385F625E812170006AE59 /* SigninVC.swift in Sources */,
 				1AF3865F25E855BE0006AE59 /* UIColor+ColorScheme.swift in Sources */,
 				1AF3864025E81A9E0006AE59 /* AuthProvider.swift in Sources */,
+				9873435025F42A2200D10923 /* SignupVC.swift in Sources */,
 				1AF385F225E812170006AE59 /* AppDelegate.swift in Sources */,
 				1AF3864325E81C4A0006AE59 /* Event.swift in Sources */,
 				1AF3865225E83C1A0006AE59 /* FeedNavigationVC.swift in Sources */,
