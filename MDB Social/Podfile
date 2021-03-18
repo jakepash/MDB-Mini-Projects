@@ -15,5 +15,6 @@ target 'MDB Social' do
   # Pods for MDB Social
 	
 	pod 'Kingfisher'
+	pod 'ImagePicker'
 
 end

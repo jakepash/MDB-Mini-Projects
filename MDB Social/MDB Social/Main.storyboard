@@ -34,11 +34,35 @@
                         <viewLayoutGuide key="safeArea" id="dad-AM-kXd"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" id="Rst-DX-nYy"/>
+                    <navigationItem key="navigationItem" id="Rst-DX-nYy">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="0wm-HY-8LX">
+                            <connections>
+                                <segue destination="dY6-iz-dJX" kind="show" id="JgD-Mz-SDt"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2yF-0q-22y" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-212" y="-29"/>
+        </scene>
+        <!--Add Event View Controller-->
+        <scene sceneID="CUe-as-obS">
+            <objects>
+                <viewController id="dY6-iz-dJX" customClass="AddEventViewController" customModule="MDB_Social" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="3HB-D8-3Vv">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="LWM-0P-jEb"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="s7y-Lr-Fut"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UwC-ZS-VaY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="510" y="-29"/>
         </scene>
     </scenes>
     <resources>

@@ -57,6 +57,10 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSCameraUsageDescription</key>
+	<string>MDB Social wants to take photos to add to your event</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>MDB Social wants to access your photos to add to your event</string>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

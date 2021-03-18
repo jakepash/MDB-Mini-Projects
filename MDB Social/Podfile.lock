@@ -331,6 +331,7 @@ PODS:
     - gRPC-Core/Interface (= 1.28.2)
   - gRPC-Core/Interface (1.28.2)
   - GTMSessionFetcher/Core (1.5.0)
+  - ImagePicker (3.2.0)
   - Kingfisher (6.1.1)
   - leveldb-library (1.22)
   - MarqueeLabel (4.0.5)
@@ -351,6 +352,7 @@ DEPENDENCIES:
   - Firebase/Firestore
   - Firebase/Storage
   - FirebaseFirestoreSwift
+  - ImagePicker
   - Kingfisher
   - NotificationBannerSwift (~> 3.0.0)
 
@@ -373,6 +375,7 @@ SPEC REPOS:
     - "gRPC-C++"
     - gRPC-Core
     - GTMSessionFetcher
+    - ImagePicker
     - Kingfisher
     - leveldb-library
     - MarqueeLabel
@@ -399,6 +402,7 @@ SPEC CHECKSUMS:
   "gRPC-C++": 13d8ccef97d5c3c441b7e3c529ef28ebee86fad2
   gRPC-Core: 4afa11bfbedf7cdecd04de535a9e046893404ed5
   GTMSessionFetcher: b3503b20a988c4e20cc189aa798fd18220133f52
+  ImagePicker: 1d950bbb2422548ed58791b4ec7f42fe42920511
   Kingfisher: 676d63307fbef6ed5d5ed400bff36983480d7500
   leveldb-library: 55d93ee664b4007aac644a782d11da33fba316f7
   MarqueeLabel: 00cc0bcd087111dca575878b3531af980559707d
@@ -407,6 +411,6 @@ SPEC CHECKSUMS:
   PromisesObjC: 8c196f5a328c2cba3e74624585467a557dcb482f
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
 
-PODFILE CHECKSUM: 0e06066924cfffdb775b023f094bdb0ad3d2a939
+PODFILE CHECKSUM: 2cc309205db501b90612fdbdc9b1c457a2a84373
 
 COCOAPODS: 1.10.1

@@ -31,6 +31,8 @@
 		9873434C25F4279700D10923 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9873434B25F4279700D10923 /* GoogleService-Info.plist */; };
 		9873435025F42A2200D10923 /* SignupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9873434F25F42A2200D10923 /* SignupVC.swift */; };
 		9873435325F45BAE00D10923 /* FeedCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9873435225F45BAE00D10923 /* FeedCollectionViewCell.swift */; };
+		98A7BFB025FF17B9008F0FD0 /* AddEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98A7BFAF25FF17B9008F0FD0 /* AddEventViewController.swift */; };
+		98A7BFD025FF3547008F0FD0 /* EventDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98A7BFCF25FF3547008F0FD0 /* EventDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +62,8 @@
 		9873434B25F4279700D10923 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9873434F25F42A2200D10923 /* SignupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupVC.swift; sourceTree = "<group>"; };
 		9873435225F45BAE00D10923 /* FeedCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCollectionViewCell.swift; sourceTree = "<group>"; };
+		98A7BFAF25FF17B9008F0FD0 /* AddEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventViewController.swift; sourceTree = "<group>"; };
+		98A7BFCF25FF3547008F0FD0 /* EventDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDetailViewController.swift; sourceTree = "<group>"; };
 		BC2F19D1A2D8BB347835EFD1 /* Pods-MDB Social.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MDB Social.release.xcconfig"; path = "Target Support Files/Pods-MDB Social/Pods-MDB Social.release.xcconfig"; sourceTree = "<group>"; };
 		E51BF3FE48C081C2540BE42E /* Pods_MDB_Social.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MDB_Social.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -159,6 +163,8 @@
 				1AF3864D25E83B850006AE59 /* FeedVC.swift */,
 				9873435225F45BAE00D10923 /* FeedCollectionViewCell.swift */,
 				1AF3865125E83C1A0006AE59 /* FeedNavigationVC.swift */,
+				98A7BFAF25FF17B9008F0FD0 /* AddEventViewController.swift */,
+				98A7BFCF25FF3547008F0FD0 /* EventDetailViewController.swift */,
 			);
 			path = Feed;
 			sourceTree = "<group>";
@@ -308,12 +314,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				1AF03DC425EDC18500E3FF80 /* HorizontalActionLabel.swift in Sources */,
+				98A7BFD025FF3547008F0FD0 /* EventDetailViewController.swift in Sources */,
 				9873435325F45BAE00D10923 /* FeedCollectionViewCell.swift in Sources */,
 				1AF3867E25E877B40006AE59 /* LoadingButton.swift in Sources */,
 				1AF3865625E83E4E0006AE59 /* UIViewController+HideKeyboard.swift in Sources */,
 				1AF3862525E816540006AE59 /* User.swift in Sources */,
 				1AF3864E25E83B850006AE59 /* FeedVC.swift in Sources */,
 				1AF385F625E812170006AE59 /* SigninVC.swift in Sources */,
+				98A7BFB025FF17B9008F0FD0 /* AddEventViewController.swift in Sources */,
 				1AF3865F25E855BE0006AE59 /* UIColor+ColorScheme.swift in Sources */,
 				1AF3864025E81A9E0006AE59 /* AuthProvider.swift in Sources */,
 				9873435025F42A2200D10923 /* SignupVC.swift in Sources */,

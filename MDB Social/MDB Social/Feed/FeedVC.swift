@@ -38,6 +38,7 @@ class FeedVC: UIViewController {
 		view.addSubview(eventCollectionView)
 		eventCollectionView.dataSource = self
 		eventCollectionView.delegate = self
+		eventCollectionView.backgroundColor = .white
 		
 		NSLayoutConstraint.activate([
 			eventCollectionView.topAnchor.constraint(equalTo: view.topAnchor),
@@ -47,14 +48,13 @@ class FeedVC: UIViewController {
 		])
 		
 		
-//        view.addSubview(signOutButton)
-//
-//        signOutButton.center = view.center
+
 		navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Sign out", style: .plain, target: self, action: #selector(didTapSignOut(_:)))
-//        signOutButton.addTarget(self, action: #selector(didTapSignOut(_:)), for: .touchUpInside)
-		
+//		navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTapped))
+
 		
 		FIRDatabaseRequest().getEvents { (documents) in
+			self.events = []
 			for document in documents {
 				guard let event = try? document.data(as: Event.self) else {
 					print("FAILURE")
@@ -80,6 +80,8 @@ class FeedVC: UIViewController {
             UIView.transition(with: window, duration: duration, options: options, animations: {}, completion: nil)
         }
     }
+	
+
 }
 
 extension FeedVC: UICollectionViewDataSource {
@@ -100,8 +102,22 @@ extension FeedVC: UICollectionViewDataSource {
 			cell.authorLabel.text = "by \(fullname)"
 		})
 		cell.rsvpLabel.text = "\(event.rsvpUsers.count) already RSVPed"
-		
+		cell.eventDescription = event.description
+		cell.event = event
 		return cell
+	}
+	
+	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+		print("\(indexPath.row) selected")
+		let vc = EventDetailViewController()
+		let collectionView = collectionView.cellForItem(at: indexPath) as! FeedCollectionViewCell
+		vc.eventName = collectionView.titleLabel.text
+		vc.creatorName = collectionView.authorLabel.text
+		vc.numberRSVPed = collectionView.rsvpLabel.text
+		vc.image = collectionView.imageView.image
+		vc.eventDescription = collectionView.eventDescription
+		vc.event = collectionView.event
+		navigationController?.pushViewController(vc, animated: true)
 	}
 }
 

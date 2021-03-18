@@ -10,6 +10,9 @@ import UIKit
 class FeedCollectionViewCell: UICollectionViewCell {
 	static let reuseIdentifier: String = String(describing: FeedCollectionViewCell.self)
 	
+	var eventDescription: String?
+	var event: Event!
+	
 	let imageView: UIImageView = {
 		let iv = UIImageView()
 		iv.tintColor = .white
