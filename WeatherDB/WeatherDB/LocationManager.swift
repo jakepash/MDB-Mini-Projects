@@ -20,6 +20,8 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
     let manager = CLLocationManager()
     
     var location: CLLocation?
+	
+	
     
     override init() {
         super.init()

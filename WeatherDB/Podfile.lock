@@ -1,0 +1,24 @@
+PODS:
+  - GoogleMaps/Base (4.2.0)
+  - GooglePlaces (4.2.0):
+    - GoogleMaps/Base (= 4.2.0)
+  - Kingfisher (6.1.1)
+
+DEPENDENCIES:
+  - GooglePlaces
+  - Kingfisher (~> 6.0)
+
+SPEC REPOS:
+  trunk:
+    - GoogleMaps
+    - GooglePlaces
+    - Kingfisher
+
+SPEC CHECKSUMS:
+  GoogleMaps: eb03e327edfd70b06de1e6e321653f73712df7ad
+  GooglePlaces: 196a9dd88580dcb3f3df46f415057703d0d2a310
+  Kingfisher: 676d63307fbef6ed5d5ed400bff36983480d7500
+
+PODFILE CHECKSUM: 4353b1744645daf77e079863e9a10ba1050d918d
+
+COCOAPODS: 1.10.1
