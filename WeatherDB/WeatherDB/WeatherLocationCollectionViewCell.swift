@@ -33,9 +33,11 @@ class WeatherLocationCollectionViewCell: UICollectionViewCell {
 	override init(frame: CGRect) {
 		super.init(frame: frame)
 		
+		
+		
 		contentView.addSubview(locationLabel)
 		contentView.addSubview(temperatureLabel)
-		contentView.backgroundColor = .systemGray
+		contentView.backgroundColor = #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1)
 		
 		NSLayoutConstraint.activate([
 			locationLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),

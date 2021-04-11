@@ -109,6 +109,8 @@ extension ViewController: UICollectionViewDataSource {
 		let locationsWCurrent = [currentLocation] + locations
 		let location = locationsWCurrent[indexPath.item]
 		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: WeatherLocationCollectionViewCell.reuseIdentifier, for: indexPath) as! WeatherLocationCollectionViewCell
+		cell.layer.cornerRadius = 10
+		cell.layer.masksToBounds = true
 		if let location = location {
 			WeatherRequest.shared.weather(at: location, completion: { result in
 					   switch result {
@@ -145,7 +147,7 @@ extension ViewController: UICollectionViewDataSource {
 
 extension ViewController: UICollectionViewDelegateFlowLayout {
 	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-		return CGSize(width: 300, height: 200)
+		return CGSize(width: 350, height: 100)
 	}
 
 }
