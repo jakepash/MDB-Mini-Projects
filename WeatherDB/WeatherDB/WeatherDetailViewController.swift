@@ -16,6 +16,7 @@ class WeatherDetailViewController: UIViewController {
 		let label = UILabel()
 		label.font = .systemFont(ofSize: 18)
 //		label.textColor = .black
+		label.textColor = .label
 		label.textAlignment = .left
 		label.translatesAutoresizingMaskIntoConstraints = false
 		label.numberOfLines = 0
@@ -38,7 +39,7 @@ class WeatherDetailViewController: UIViewController {
         // Do any additional setup after loading the view.
 		view.addSubview(weatherLabel)
 		view.addSubview(iconimageView)
-		view.backgroundColor = .white
+		view.backgroundColor = .systemBackground
 		
 		NSLayoutConstraint.activate([
 			weatherLabel.centerYAnchor.constraint(equalTo: view.centerYAnchor),

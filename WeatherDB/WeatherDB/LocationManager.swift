@@ -8,6 +8,9 @@
 import Foundation
 import CoreLocation
 
+//current location signleton
+var currentLocation: CLLocation?
+
 class LocationManager: NSObject, CLLocationManagerDelegate {
     
     static let shared = LocationManager()
@@ -19,7 +22,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
     
     let manager = CLLocationManager()
     
-    var location: CLLocation?
+    
 	
 	
     
@@ -33,7 +36,8 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        location = locations.first
+		Singleton.shared.currentLocation = locations.first
+		
     }
     
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {

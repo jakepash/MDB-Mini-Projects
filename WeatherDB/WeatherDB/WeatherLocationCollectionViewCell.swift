@@ -15,7 +15,7 @@ class WeatherLocationCollectionViewCell: UICollectionViewCell {
 	let locationLabel: UILabel = {
 		let label = UILabel()
 		label.font = .systemFont(ofSize: 18)
-//		label.textColor = .black
+		label.textColor = .label
 		label.textAlignment = .left
 		label.translatesAutoresizingMaskIntoConstraints = false
 		return label
@@ -24,7 +24,7 @@ class WeatherLocationCollectionViewCell: UICollectionViewCell {
 	let temperatureLabel: UILabel = {
 		let label = UILabel()
 		label.font = .systemFont(ofSize: 18)
-//		label.textColor = .black
+		label.textColor = .label
 		label.textAlignment = .right
 		label.translatesAutoresizingMaskIntoConstraints = false
 		return label
@@ -35,7 +35,7 @@ class WeatherLocationCollectionViewCell: UICollectionViewCell {
 		
 		contentView.addSubview(locationLabel)
 		contentView.addSubview(temperatureLabel)
-		contentView.backgroundColor = .lightGray
+		contentView.backgroundColor = .systemGray
 		
 		NSLayoutConstraint.activate([
 			locationLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),

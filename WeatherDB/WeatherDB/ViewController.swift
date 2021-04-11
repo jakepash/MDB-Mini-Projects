@@ -12,6 +12,7 @@ import GooglePlaces
 class ViewController: UIViewController {
 	
 	var locations: [CLLocation] = []
+	var currentLocation: CLLocation?
 	
 	private let weatherLocationsCollectionView: UICollectionView = {
 		let layout = UICollectionViewFlowLayout()
@@ -26,16 +27,17 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-		
+		Singleton.shared.delegate = self
 		
 		navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTapped))
 
 		fetchLocations()
+		
 
 		view.addSubview(weatherLocationsCollectionView)
 		weatherLocationsCollectionView.dataSource = self
 		weatherLocationsCollectionView.delegate = self
-		weatherLocationsCollectionView.backgroundColor = .white
+		weatherLocationsCollectionView.backgroundColor = .systemBackground
 		
 		NSLayoutConstraint.activate([
 			weatherLocationsCollectionView.topAnchor.constraint(equalTo: view.topAnchor),
@@ -48,13 +50,11 @@ class ViewController: UIViewController {
 	
 	
 	func fetchLocations() {
-		let defaultLocation = CLLocation(latitude: 37.8715, longitude: -122.2730)
-		let savedLocations = UserDefaults.standard.array(forKey: "locations") as? [CLLocation] ?? [defaultLocation]
-		locations.append(contentsOf: savedLocations)
-//		let currentLocation = LocationManager.shared.location
-//		locations.append(currentLocation!)
-		
-
+		loadLocationsFromDisk()
+		if locations.count < 1 {
+			let defaultLocation = CLLocation(latitude: 37.8715, longitude: -122.2730)
+			locations.append(defaultLocation)
+		}
 	}
 	
 	@objc func addTapped(_ sender: UIButton) {
@@ -63,7 +63,7 @@ class ViewController: UIViewController {
 
 		// Specify the place data types to return.
 		let fields: GMSPlaceField = GMSPlaceField(rawValue: UInt(GMSPlaceField.name.rawValue) |
-													UInt(GMSPlaceField.placeID.rawValue))
+													UInt(GMSPlaceField.placeID.rawValue) | UInt(GMSPlaceField.coordinate.rawValue))
 		autocompleteController.placeFields = fields
 
 		// Specify a filter.
@@ -73,34 +73,63 @@ class ViewController: UIViewController {
 		
 		present(autocompleteController, animated: true, completion: nil)
 	}
+	
+	func saveLocationsToDisk() {
+		do {
+			let data = try NSKeyedArchiver.archivedData(withRootObject: locations, requiringSecureCoding: false)
+			UserDefaults.standard.set(data, forKey: "locations")
+		} catch {
+			print("Couldn't write file")
+		}
+	}
+	
+	func loadLocationsFromDisk() {
+		do {
+			if let data = UserDefaults.standard.data(forKey: "locations") {
+				if let loadedLocations = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? [CLLocation] {
+					locations = loadedLocations
+				}
+			}
+			
+		} catch {
+			print("Couldn't read file.")
+		}
+	}
+	
     
 }
 
 
 extension ViewController: UICollectionViewDataSource {
 	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-		return locations.count
+		return locations.count + 1
 	}
 	
 	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-		let location = locations[indexPath.item]
+		let locationsWCurrent = [currentLocation] + locations
+		let location = locationsWCurrent[indexPath.item]
 		let cell = collectionView.dequeueReusableCell(withReuseIdentifier: WeatherLocationCollectionViewCell.reuseIdentifier, for: indexPath) as! WeatherLocationCollectionViewCell
-		
-		WeatherRequest.shared.weather(at: location, completion: { result in
-				   switch result {
-				   case .success(let weather):
-					   print(weather)
-					DispatchQueue.main.async {
-						cell.locationLabel.text = weather.name
-						cell.temperatureLabel.text = "\(weather.main.temperature)°"
-						cell.weather = weather
-					}
-				   case .failure(let error):
-					   print(error)
-				   }
-			   })
+		if let location = location {
+			WeatherRequest.shared.weather(at: location, completion: { result in
+					   switch result {
+					   case .success(let weather):
+						   print(weather)
+						DispatchQueue.main.async {
+							cell.locationLabel.text = weather.name
+							cell.temperatureLabel.text = "\(weather.main.temperature)°"
+							cell.weather = weather
+						}
+					   case .failure(let error):
+						   print(error)
+					   }
+				   })
+			
+		} else {
+			cell.locationLabel.text = "Cannot get location"
+		}
 		
 		return cell
+		
 	}
 	
 	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -111,18 +140,7 @@ extension ViewController: UICollectionViewDataSource {
 		navigationController?.pushViewController(vc, animated: true)
 	}
 	
-	
-	func getLocation(from address: String, completion: @escaping (_ location: CLLocationCoordinate2D?)-> Void) {
-		let geocoder = CLGeocoder()
-		geocoder.geocodeAddressString(address) { (placemarks, error) in
-			guard let placemarks = placemarks,
-			let location = placemarks.first?.location?.coordinate else {
-				completion(nil)
-				return
-			}
-			completion(location)
-		}
-	}
+
 }
 
 extension ViewController: UICollectionViewDelegateFlowLayout {
@@ -138,12 +156,10 @@ extension ViewController: GMSAutocompleteViewControllerDelegate {
   func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
 	print("Place name: \(place.name)")
 	print("Place ID: \(place.placeID)")
-//	getLocation(from: place.name ?? "") { location in
-//		locations.append(location)
-//	})
 	let location = CLLocation(latitude: place.coordinate.latitude, longitude: place.coordinate.longitude)
 	locations.append(location)
 	weatherLocationsCollectionView.reloadData()
+	saveLocationsToDisk()
 	print("Place attributions: \(place.attributions)")
 	dismiss(animated: true, completion: nil)
   }
@@ -167,4 +183,16 @@ extension ViewController: GMSAutocompleteViewControllerDelegate {
 	UIApplication.shared.isNetworkActivityIndicatorVisible = false
   }
 
+}
+
+extension ViewController: SingletonDelegate {
+	func variableDidChange(location value: CLLocation?) {
+	//here u get value if changed
+		if let value = value {
+			currentLocation = value
+			weatherLocationsCollectionView.reloadData()
+			saveLocationsToDisk()
+		}
+		
+	}
 }
